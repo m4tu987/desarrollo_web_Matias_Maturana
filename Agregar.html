@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Formulario de nueva Actividad</title>
+    <link rel="stylesheet" type="text/css" href="./styles.css">
+</head>
+<body>
+    <div class="main-container">
+        <div id="val-box" hidden>
+            <h2 id="val-msg"></h2>
+            <ul id="val-list"></ul>
+        </div>
+        <h1>Formulario nueva Actividad</h1><br>
+        <form name="myForm" method="post" enctype="multipart/form-data">
+            <label for="select-region">Region</label>
+            <select name="select-region" id="select-region" required>
+                <option value="">Seleccione una región</option>
+            </select><br>
+
+            <label for="select-comuna">Comuna</label>
+            <select name="select-comuna" id="select-comuna" required>
+                <option value="">Seleccione una comuna</option>
+            </select><br>
+
+            <label for="sector">Sector</label>
+            <input type="text" name="sector" id="sector" minlength="0" maxlength="100"><br>
+            
+            <label for="nombre">Nombre</label>
+            <input type="text" name="nombre" id="nombre"  maxlength="200" required><br>
+
+            <label for="email" >Email</label>
+            <input type="email" name="email" id="email" minlength="15" maxlength="100" required><br>
+            
+            <label for="phone" >Teléfono</label>
+            <input type="tel" name="phone" id="phone" minlength="0" maxlength="15"><br>
+            
+            <label for="select-contactar">Contactar por</label>
+            <select name="select-contactar" id="select-contactar"></select><br>
+
+            <input type="text" id="input-otra" style="display: none;"><br>
+
+            <label for ="dia-inicio">Dia de inicio</label>
+            <input type="datetime-local" name="dia-inicio" id="dia-inicio" required>
+
+            <label for ="dia-inicio">Dia de término</label>
+            <input type="datetime-local" name="dia-inicio" id="dia-termino" ><br>
+
+            <label for="descripcion">Descripción</label>
+            <textarea name="descripcion" id="descripcion" rows="10" cols="50"></textarea><br>
+
+            <label for="select-temas">Temas</label>
+            <select name="select-temas" id="select-temas" required>
+                <option value="">Seleccione un tema</option>
+            </select><br>
+
+            <input type="text" id="input-otro-tema" style="display: none;"><br>
+
+            <label for="files">Fotos</label>
+            <input type="file" name="files" id="files" multiple accept="image/*,.pdf" required><br>
+
+            <button id="agregarFotoBtn" type="button">Agregar otra foto</button>
+            <div id="contenedorFotos"></div>
+
+            <button id="submit-btn" type="button">Agregar esta actividad    </button><br>
+        </form>
+        <div id="mensaje-final" style="display:none;"></div><br>
+        <div id="modal-confirmacion" style="display:none;">
+            <div class="modal-content">
+                <p>¿Está seguro que desea agregar esta actividad?</p>
+                <button id="btn-si">Sí, estoy seguro</button>
+                <button id="btn-no">No, no estoy seguro, quiero volver al formulario</button>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="./js/region_comuna.js"></script>
+    <script type="module" src="./js/select.js"></script>
+    <script src="./js/validation.js" defer></script>
+</body>
+</html>

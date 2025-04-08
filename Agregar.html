@@ -46,7 +46,7 @@
             <input type="datetime-local" name="dia-inicio" id="dia-termino" ><br>
 
             <label for="descripcion">Descripción</label>
-            <textarea name="descripcion" id="descripcion" rows="10" cols="50"></textarea><br>
+            <textarea name="descripcion" id="descripcion" rows="10" cols="50" placeholder="Agregue Descripción..."></textarea><br>
 
             <label for="select-temas">Temas</label>
             <select name="select-temas" id="select-temas" required>
@@ -58,10 +58,11 @@
             <label for="files">Fotos</label>
             <input type="file" name="files" id="files" multiple accept="image/*,.pdf" required><br>
 
-            <button id="agregarFotoBtn" type="button">Agregar otra foto</button>
             <div id="contenedorFotos"></div>
-
-            <button id="submit-btn" type="button">Agregar esta actividad    </button><br>
+            <button id="agregarFotoBtn" type="button">Agregar otra foto</button>
+            
+            <button class ="btn" id="submit-btn" type="button">Agregar esta actividad    </button>
+            <button class="btn" onclick="location.href='index.html'" >Volver a la Portada</button>
         </form>
         <div id="mensaje-final" style="display:none;"></div><br>
         <div id="modal-confirmacion" style="display:none;">
@@ -73,7 +74,7 @@
         </div>
     </div>
     <script type="module" src="./js/region_comuna.js"></script>
-    <script type="module" src="./js/select.js"></script>
+    <script type="module" src="./js/Agregar.js"></script>
     <script src="./js/validation.js" defer></script>
 </body>
 </html>

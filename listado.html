@@ -10,20 +10,48 @@
             <h2 id="val-msg"></h2>
             <ul id="val-list"></ul>
         </div>
-        <h1>Listado de Actividades</h1><br>
-        <table>
-            <tr>
-                <td>Inicio</td>
-                <td>Término</td>
-                <td>Comuna</td>
-                <td>Sector</td>
-                <td>Tema</td>
-                <td>Nombre Organizador</td>
-                <td>Total fotos</td>
-            </tr>
-            <tr></tr>
-        </table>
-    <script type= "module" src="./js/select.js"></script>
+        <h1>Listado de Actividades</h1>
+        <div id="listadoActividades">
+            <table>
+            <thead>
+                <tr>
+                <th>Inicio</th>
+                <th>Término</th>
+                <th>Comuna</th>
+                <th>Sector</th>
+                <th>Tema</th>
+                <th>Nombre Organizador</th>
+                <th>Total Fotos</th>
+                </tr>
+            </thead>
+            <tbody id="tablaBody">
+                <!-- Se llenará con JS -->
+            </tbody>
+            </table>
+            <button class="btn" onclick="location.href='index.html'" >Volver a la Portada</button>
+        </div>
+        
+        <div id="detalleActividad">
+            <h2>Detalle de Actividad</h2>
+            <p><strong>Inicio:</strong> <span id="inicio"></span></p>
+            <p><strong>Término:</strong> <span id="termino"></span></p>
+            <p><strong>Comuna:</strong> <span id="comuna"></span></p>
+            <p><strong>Sector:</strong> <span id="sector"></span></p>
+            <p><strong>Tema:</strong> <span id="tema"></span></p>
+            <p><strong>Nombre Organizador:</strong> <span id="organizador"></span></p>
+            <p><strong>Total Fotos:</strong> <span id="totalFotos"></span></p>
+            <div id="fotos"></div>
+            <br>
+            <button class="btn" id="volverListado" onclick="volverAlListado()">Volver al Listado</button>
+            <button class="btn" onclick="location.href='index.html'">Volver a la Portada</button>
+        </div>
+        <div id="modalFoto">
+            <img src="/imagenes/gente-sonriente.jpg" alt="Foto ampliada">
+            <button onclick="cerrarModal()">Cerrar</button>
+        </div>
+    </div>
+    <script type= "module" src="./js/Listado.js"></script>
     <script src="./js/validation.js"></script>
 </body>
 </html>
+

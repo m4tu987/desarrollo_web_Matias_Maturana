@@ -9,31 +9,33 @@
         <h1 class ="main-title">
             Bienvenid@, Gestiona tus actividades aquí !!
         </h1>
+        <div class="centro">
         <table>
             <tr>
-                <td><a href="Agregar.html">Agregar Actividad</a></td>
+                <td><a href="Agregar.html" class="link">Agregar Actividad</a></td>
             </tr>
             <tr>
-                <td><a href="listado.html">Ver listado de Actividades</a></td>
+                <td><a href="listado.html" class="link">Ver listado de Actividades</a></td>
             </tr>
             <tr>
-                <td><a href="estadisticas.html">Estadísticas</a></td>
+                <td><a href="estadisticas.html" class="link">Estadísticas</a></td>
             </tr>
         </table>
-    </div>
-        <div>
             <table>
-                <tr>
-                    <td>Inicio</td>
-                    <td>Término</td>
-                    <td>Comuna</td>
-                    <td>Sector</td>
-                    <td>Tema</td>
-                    <td>Foto</td>
-            </table>
+            
+                <thead>
+                    <tr>
+                    <th>Inicio</th>
+                    <th>Término</th>
+                    <th>Comuna</th>
+                    <th>Sector</th>
+                    <th>Tema</th>
+                    <th>Foto</th>
+                    </tr>
+                </thead><tbody id= "tablab"></tbody></table>
         </div>
-
-    <script type= "module" src="./js/select.js"></script>
+    </div>
+    <script type= "module" src="./js/index.js"></script>
     <script src="./js/validation.js" defer></script>
 </body>
 </html>

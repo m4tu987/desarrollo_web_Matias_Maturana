@@ -9,47 +9,59 @@ window.addEventListener("load", () => {
 
     submitBtn.addEventListener("click", () => {
         const archivos = inputFiles.files;
-
-        if (archivos.length === 0) {
+        const inputs_adicionales = document.querySelectorAll('#contenedorFotos input[type="file"]');
+        let archivos_adicionales = [];
+        inputs_adicionales.forEach(input => {
+            for (let i = 0; i < input.files.length; i++) {
+                archivos_adicionales.push(input.files[i]);
+            }
+        });
+        const totalArchivos = archivos.length + archivos_adicionales.length;
+        if (totalArchivos === 0) {
             alert("Debes seleccionar al menos una foto.");
             return;
         }
 
-        if (archivos.length > 5) {
+        if (totalArchivos > 5) {
             alert("Solo puedes subir un máximo de 5 fotos.");
             return;
         }
 
         mostrarConfirmacion();
     });
-    function mostrarConfirmacion() {
+function mostrarConfirmacion() {
         // Muestra el modal
-        modalConfirmacion.style.display = "flex";
+    modalConfirmacion.style.display = "flex";
 
-        const btnSi = document.getElementById("btn-si");
-        const btnNo = document.getElementById("btn-no");
+    const btnSi = document.getElementById("btn-si");
+    const btnNo = document.getElementById("btn-no");
 
-        if (btnSi && btnNo) {
-            btnSi.addEventListener("click", () => {
-                modalConfirmacion.innerHTML = `
+    if (btnSi && btnNo) {
+        btnSi.addEventListener("click", () => {
+            modalConfirmacion.innerHTML = `
                     <div class="modal-content">
                         <p>Hemos recibido su información, muchas gracias y suerte en su actividad.</p>
                         <button onclick="window.location.href='index.html'">Volver a la portada</button>
                     </div>
-                `;
-            });
+            `;
+        });
 
-            btnNo.addEventListener("click", () => {
-                modalConfirmacion.style.display = "none";
-                formulario.style.display = "block";
-            });
-        }
+        btnNo.addEventListener("click", () => {
+            modalConfirmacion.style.display = "none";
+            formulario.style.display = "block";
+        });
     }
+}
+document.getElementById("volverListado").addEventListener("click", () => {
+document.getElementById("detalleActividad").style.display = "none";
+document.getElementById("tablaActividades").style.display = "table";
+});
 });
 function agregarFoto() {
     const contenedor = document.getElementById('contenedorFotos');  // Contenedor donde se agregarán los inputs
+    const archivos_largo = document.getElementById("files").files.length
     const inputs = contenedor.getElementsByTagName('input');
-    if (inputs.length >= 4) {
+    if (inputs.length + archivos_largo > 5) {
         alert('No puedes agregar más de 5 fotos.');
         return;
     }
@@ -62,6 +74,16 @@ function agregarFoto() {
     contenedor.appendChild(nuevoInput);  // Añadir el nuevo input al contenedor
     contenedor.appendChild(document.createElement('br'));  // Añadir un salto de línea después de cada input
 }
+function volverAlListado() {
+    const listado = document.getElementById("listadoActividades");
+    const detalle = document.getElementById("detalleActividad");
+    listado.style.display = "block";
+    detalle.style.display = "none";
+}
+function cerrarModal() {
+    document.getElementById("modalFoto").style.display = "none";
+}
 
 // Asignar el evento al botón de agregar otra foto
 document.getElementById('agregarFotoBtn').addEventListener('click', agregarFoto);
+document.getElementById('volverListado').addEventListener('click', volverAlListado);

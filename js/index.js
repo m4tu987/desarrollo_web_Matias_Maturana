@@ -47,7 +47,6 @@ function llenarActividades(){
     actividades.forEach((actividad, index) => {
         const row = document.createElement("tr");
         const fotosHTML = actividad.fotos
-        .filter(url => url) // Elimina strings vacíos
         .map(url => `<img src="${url}" class="foto2" alt="foto ${index}">`)
         .join("");
         row.innerHTML = `

@@ -4,9 +4,6 @@ window.addEventListener("load", () => {
     const modalConfirmacion = document.getElementById("modal-confirmacion");
     const formulario = document.getElementById("myForm");
 
-    // Verificar que el formulario y el mensajeFinal se están seleccionando correctamente
-    console.log(formulario); // Verifica si el formulario se encuentra
-
     submitBtn.addEventListener("click", () => {
         const archivos = inputFiles.files;
         const inputs_adicionales = document.querySelectorAll('#contenedorFotos input[type="file"]');
@@ -26,9 +23,81 @@ window.addEventListener("load", () => {
             alert("Solo puedes subir un máximo de 5 fotos.");
             return;
         }
-
+        if (!validarformulario()){
+            return;
+        }
         mostrarConfirmacion();
+        
     });
+function validarformulario(){
+    const selectRegion = document.getElementById("select-region");
+    const selectComuna = document.getElementById("select-comuna");
+    const inputSector = document.getElementById("sector");
+    const inputNombre = document.getElementById("nombre");
+    const inputEmail = document.getElementById("email");
+    const inputPhone = document.getElementById("phone");
+    const selectContactar = document.getElementById("select-contactar");
+    const inputInicio = document.getElementById("dia-inicio");
+    const inputTermino = document.getElementById("dia-termino");
+    const selectTema = document.getElementById("select-temas");
+
+    if (selectRegion.value === "") {
+        alert("Por favor, seleccione una región.");
+        return;  // Evita el envío del formulario si la validación falla
+    }
+    if (selectComuna.value === ""){
+        alert("Por favor, seleccione una Comuna.");
+        return;  // Evita el envío del formulario si la validación falla
+    }
+    if(inputSector.value.length > 100){
+        alert("El texto excede el límite de 100 caracteres.");
+        return;
+    }
+    if (!inputNombre.value || inputNombre.value > 200){
+        alert("Error al ingresar el nombre");
+        return;
+    }
+    let re = /^[\w.]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+    if (!inputEmail.value || !re.test(inputEmail.value)){
+        alert("Ingrese un correo válido");
+        return;
+    }
+    const tel = inputPhone.value;
+    if(!/^\+569\.\d{8}$/.test(tel)){
+        alert("Ingrese Número de teléfono válido");
+        return;
+    }
+    if(selectContactar.value === "otro"){
+        inputContactar =  document.getElementById("input-otra");
+        if (inputContactar.value.length < 4 || inputContactar.value.length > 50){
+            alert("Ingresa ID o URL Válido");
+            return;
+        }
+    }
+    const time = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/;
+    if(!time.test(inputInicio.value) || !inputInicio.value){
+        alert("Ingresa Fecha de inicio Válida");
+        return;
+    }
+    if (inputTermino.value){
+        if(new Date(inputTermino.value) <= new Date(inputInicio.value)){
+            alert("Ingresa Fecha de Término Válida");
+            return;
+        }
+    }
+    if(!selectTema.value){
+        alert("Seleccione una opcion");
+        return;
+    }
+    if (selectTema.value ==="otro"){
+        const inputTema= document.getElementById("input-otro-tema");
+        if (inputTema.value.length < 3 || inputTema.value.length > 15 || inputTema.value.trim() ===""){
+            alert("Ingrese tema válido");
+            return;
+        }
+    }
+    return true;
+    }
 function mostrarConfirmacion() {
         // Muestra el modal
     modalConfirmacion.style.display = "flex";
@@ -52,10 +121,7 @@ function mostrarConfirmacion() {
         });
     }
 }
-document.getElementById("volverListado").addEventListener("click", () => {
-document.getElementById("detalleActividad").style.display = "none";
-document.getElementById("tablaActividades").style.display = "table";
-});
+
 });
 function agregarFoto() {
     const contenedor = document.getElementById('contenedorFotos');  // Contenedor donde se agregarán los inputs
@@ -69,21 +135,10 @@ function agregarFoto() {
     // Crear el nuevo input de tipo "file"
     const nuevoInput = document.createElement('input');
     nuevoInput.type = 'file';
-    nuevoInput.name = 'files';  // Asegúrate de que todos los inputs tengan el mismo nombre para enviarlos como un grupo de archivos
+    nuevoInput.name = 'files';  // 
     nuevoInput.accept = 'image/*,.pdf';  // Aceptar imágenes y PDFs
     contenedor.appendChild(nuevoInput);  // Añadir el nuevo input al contenedor
     contenedor.appendChild(document.createElement('br'));  // Añadir un salto de línea después de cada input
 }
-function volverAlListado() {
-    const listado = document.getElementById("listadoActividades");
-    const detalle = document.getElementById("detalleActividad");
-    listado.style.display = "block";
-    detalle.style.display = "none";
-}
-function cerrarModal() {
-    document.getElementById("modalFoto").style.display = "none";
-}
 
-// Asignar el evento al botón de agregar otra foto
 document.getElementById('agregarFotoBtn').addEventListener('click', agregarFoto);
-document.getElementById('volverListado').addEventListener('click', volverAlListado);

@@ -97,10 +97,23 @@ function mostrarDetalle(index) {
 function ampliarFoto(url) {
     const modal = document.getElementById("modalFoto");
     const img = modal.querySelector("img");
-    img.src = url.replace("320x240", "800x600"); // Simula cambio de tamaño
+    img.src = url.replace("320x240", "800x600"); 
     modal.style.display = "flex";
 }
-
+function volverAlListado() {
+  const listado = document.getElementById("listadoActividades");
+  const detalle = document.getElementById("detalleActividad");
+  listado.style.display = "block";
+  detalle.style.display = "none";
+}
+function cerrarModal() {
+  document.getElementById("modalFoto").style.display = "none";
+}
+document.getElementById("volverListado").addEventListener("click", () => {
+  document.getElementById("detalleActividad").style.display = "none";
+  document.getElementById("tablaActividades").style.display = "table";
+  });
+document.getElementById('volverListado').addEventListener('click', volverAlListado);
 
 window.onload = () => {
     llenarActividades();
